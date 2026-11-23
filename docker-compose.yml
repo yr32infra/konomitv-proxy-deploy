@@ -1,6 +1,6 @@
 services:
   konomitvproxy:
-    image: ghcr.io/yanorei32/konomitv-proxy:0.1.0
+    image: ghcr.io/yanorei32/konomitv-proxy:0.1.1
     hostname: konomitvproxy
     container_name: konomitvproxy__konomitvproxy
 
