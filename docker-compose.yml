@@ -1,0 +1,40 @@
+services:
+  konomitvproxy:
+    image: ghcr.io/yanorei32/konomitv-proxy:0.1.0
+    hostname: konomitvproxy
+    container_name: konomitvproxy__konomitvproxy
+
+    restart: unless-stopped
+
+    deploy:
+      resources:
+        limits:
+          memory: 1024m
+
+    networks:
+      - default
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.11.1
+    hostname: cloudflared
+    container_name: konomitvproxy__cloudflared
+
+    restart: unless-stopped
+
+    environment:
+      TUNNEL_LOGFILE: /dev/stdout
+
+    command: tunnel run --token ${TUNNEL_TOKEN}
+    user: root
+
+    deploy:
+      resources:
+        limits:
+          memory: 4096m
+
+    networks:
+      default:
+
+networks:
+  default:
+    name: konomitvproxy__default
