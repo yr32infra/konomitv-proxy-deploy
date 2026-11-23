@@ -6,6 +6,11 @@ services:
 
     restart: unless-stopped
 
+    environment:
+      KONOMITV_HOST: ${KONOMITV_HOST}
+      PROXY_HOST: ${PROXY_HOST}
+      PRIVATE_KEY: ${PRIVATE_KEY}
+
     deploy:
       resources:
         limits:
